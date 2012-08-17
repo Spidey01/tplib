@@ -24,6 +24,12 @@ MKOBJ = $(CXX) $(CXXFLAGS) -o $@ -c $<
 MKDLL = $(CXX) $(CXXFLAGS) -shared -Wl,-soname,$@ -o $@.$(TPLIB_MINOR_VER) $+
 MKTEST = $(CXX) -o $@ $+ -static $(LDFLAGS) -Llib -ltp
 
+#
+# Macro's to be lazy.
+#
+OBJECTS = obj/RuntimeConfiguration.o obj/RuntimeConfiguration.o
+TESTS = obj/tests/RuntimeConfiguration
+
 all: static shared tests
 
 tags:
@@ -37,16 +43,16 @@ static: lib/libtp.a
 shared: lib/libtp.so.$(TPLIB_MAJOR_VER)
 
 # Do I really need to test against both the static and shared targets? Probably...
-tests: obj/tests/RuntimeConfiguration
+tests: $(TESTS)
 	for app in $+; do \
 		echo "Running tests for `basename $$app`"; \
 		env LD_LIBRARY_PATH=./lib ./$$app ; done
 
 
-lib/libtp.a: obj/RuntimeConfiguration.o
+lib/libtp.a: $(OBJECTS)
 	$(AR) $(AFLAGS) $@ $+
 
-lib/libtp.so.$(TPLIB_MAJOR_VER):
+lib/libtp.so.$(TPLIB_MAJOR_VER): $(OBJECTS)
 	$(MKDLL)
 
 .PHONEY: clean tests
@@ -64,3 +70,8 @@ obj/tests/RuntimeConfiguration.o: tests/RuntimeConfiguration.cc
 obj/tests/RuntimeConfiguration: obj/tests/RuntimeConfiguration.o
 	$(MKTEST)
 
+obj/Log.o: src/Log.cc
+	$(MKOBJ)
+
+obj/LogSink.o: src/LogSink.cc
+	$(MKOBJ)
