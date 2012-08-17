@@ -1,0 +1,7 @@
+# vim swap files
+*.sw?
+# build outputs
+*.o
+*.so
+*.a
+*.la

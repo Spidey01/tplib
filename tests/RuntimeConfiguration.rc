@@ -1,0 +1,9 @@
+# comment
+  # commentw ith space leading
+	# comment with tab leading
+simple.name = simple value
+multi word name = some value
+dotted.name = some value
+  name with = leading spaces
+	name with = leading tab
+name that = has a # comment in its value

@@ -1,6 +1,16 @@
-My Toilet Paper Library :P.
+My very own Toilet Paper Library :P.
+
+No actually I was lazy so I named it after myself.
 
 
 This is code I've written over the years that can be useful on more than one
 project. Because of that nature, it may also be inconsistent in code formatting
 and or licensing between modules. It is however, all open source.
+
+  - Public headers are in include.
+  - Library files are in lib.
+  - Object files from the build are in obj.
+  - Source code is in src.
+
+The default is to build static and shared library versions. You can make the
+one you want via the respective static and shared targets.
