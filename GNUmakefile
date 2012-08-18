@@ -27,7 +27,7 @@ MKTEST = $(CXX) -o $@ $+ -static $(LDFLAGS) -Llib -ltp
 #
 # Macro's to be lazy.
 #
-OBJECTS = obj/RuntimeConfiguration.o obj/RuntimeConfiguration.o
+OBJECTS = obj/RuntimeConfiguration.o
 TESTS = obj/tests/RuntimeConfiguration
 
 all: static shared tests
